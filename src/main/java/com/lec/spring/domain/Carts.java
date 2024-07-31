@@ -18,8 +18,7 @@ public class Carts extends BaseEntity{
     private User userId;
     private Item itemId;
 
-    @Enumerated(EnumType.STRING)
-    private CartsStatus cartsStatus;
+    private String cartsStatus;
 
     // 결제날짜는 BaseEntity에 있음
 }

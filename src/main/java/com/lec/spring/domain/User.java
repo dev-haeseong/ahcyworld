@@ -1,12 +1,12 @@
 package com.lec.spring.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DialectOverride;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
@@ -16,18 +16,35 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-//@Entity
+@Entity
 public class User extends BaseEntity{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false,unique = true,updatable = false)
     private String username;        // 로그인 아이디
+
+    @Column(nullable = false)
+    @JsonIgnore
     private String password;
+
+    @Column(nullable = false,updatable = false)
     private String name;
+
+    @Column(unique = true)
     private String email;
+
+    @Column(nullable = false,updatable = false)
     private LocalDateTime birthDay;
 
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
+    @Column(nullable = false)
+    private String gender;
 
+    @ColumnDefault(value = "0")
+    @Column(insertable = false)
     private Long acorn;         // 도토리
+
+    @Column(updatable = false)
     private String role;        // 기본은 member
 }

@@ -15,5 +15,5 @@ public class Friend {
     private String friendName;      // 일촌명
     private String message;
 
-    private FriendStatus friendStatus;
+    private String friendStatus;
 }
