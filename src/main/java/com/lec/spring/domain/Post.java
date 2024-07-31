@@ -1,20 +1,40 @@
 package com.lec.spring.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
+import org.springframework.lang.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @Builder
+@Entity(name = "post")
 public class Post extends BaseEntity{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+
+    @OneToMany
+    @JoinColumn(name = "post_id")
+    private List<Attachment> attachment = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Folder folder;
+
+    @Column(nullable = false)
     private String subject;
+
+    @Column(nullable = false)
     private String content;
+
     private Long viewCnt;
     // 작성일은 BaseEntity
 }
