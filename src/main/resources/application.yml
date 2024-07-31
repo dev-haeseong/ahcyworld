@@ -1,0 +1,4 @@
+# 세진이는 다이어트 중
+spring:
+  profiles:
+    active: dev
