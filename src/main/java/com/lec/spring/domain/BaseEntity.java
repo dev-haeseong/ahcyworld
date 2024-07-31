@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 //@Entity
 public class BaseEntity {
-    private LocalDateTime regDate;
+    private LocalDateTime createAt;
 
 //    @PrePersist
 
