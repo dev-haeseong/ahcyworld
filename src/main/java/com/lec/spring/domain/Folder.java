@@ -1,9 +1,6 @@
 package com.lec.spring.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +15,13 @@ public class Folder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
     private BoardType boardType;
+
+    @Column(nullable = false)
     private String name;        // 폴더 이름
+
+    @ManyToOne
     private Hompy hompy;
 }
