@@ -8,9 +8,9 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
+@Builder
 @Entity
 public class Diary extends BaseEntity{
     @Id
