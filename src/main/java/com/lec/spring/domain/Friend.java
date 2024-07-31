@@ -12,7 +12,8 @@ import lombok.NoArgsConstructor;
 public class Friend {
     private User user;
     private User friendUser;
-    private String friendName;      // 일촌명
+    private String friendName;      // 일촌 친구 별명
+    private String userName;      // 일촌 user 별명.
     private String message;
 
     private String friendStatus;

@@ -1,23 +1,30 @@
 package com.lec.spring.domain;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-//@Entity
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@Table(
+    uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id","item_id"})}
+)
+@Entity
 public class Carts extends BaseEntity{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private User userId;
-    private Item itemId;
+    @ManyToOne
+    private User user;
 
+    @ManyToOne
+    private Item item;
+
+    @Column(nullable = false)
     private String cartsStatus;
 
     // 결제날짜는 BaseEntity에 있음

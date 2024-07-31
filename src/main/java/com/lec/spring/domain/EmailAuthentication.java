@@ -1,5 +1,6 @@
 package com.lec.spring.domain;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,10 +12,19 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
 public class EmailAuthentication {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String email;
     private String authenticationCode;
     private String status;
     private LocalDateTime createAt;
+
+    @PrePersist
+    @PreUpdate
+    public void prePersistAndUpdate(){
+        this.createAt = LocalDateTime.now();
+    }
 }
